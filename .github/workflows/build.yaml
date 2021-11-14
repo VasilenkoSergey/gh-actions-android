@@ -21,4 +21,6 @@ jobs:
         run: ./gradlew :app:test
 
       - name: Build
-        run: ./gradlew :app:assembleDebug
+        run: ./gradlew :app:assembleDebug sonarqube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
