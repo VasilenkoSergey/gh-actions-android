@@ -17,8 +17,8 @@ jobs:
           distribution: 'adopt'
           architecture: x64
 
-      - name: Test
-        run: ./gradlew :app:test
+#      - name: Test
+#        run: ./gradlew :app:test
 
       - name: Sonar
         env:
