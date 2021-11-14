@@ -21,7 +21,7 @@ sonarqube {
     properties {
         property 'sonar.host.url', 'https://sonarcloud.io'
         property 'sonar.organization', 'vasilenkosergey-github'
-        property 'sonar.projectKey', 'vasilenkosergey-github-actions-android'
+        property 'sonar.projectKey', 'vasilenkosergey-github_actions-android'
     }
 }
 
