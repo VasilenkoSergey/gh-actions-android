@@ -8,15 +8,3 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
     }
 }
-
-plugins {
-    id 'org.sonarqube' version '3.3'
-}
-
-sonarqube {
-    properties {
-        property 'sonar.host.url', 'https://sonarcloud.io'
-        property 'sonar.organization', 'vasilenkosergey-github'
-        property 'sonar.projectKey', 'VasilenkoSergey_gh-actions-android'
-    }
-}
