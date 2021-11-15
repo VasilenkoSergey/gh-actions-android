@@ -20,7 +20,3 @@ sonarqube {
         property 'sonar.projectKey', 'VasilenkoSergey_gh-actions-android'
     }
 }
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}

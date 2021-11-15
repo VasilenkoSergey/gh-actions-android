@@ -20,6 +20,9 @@ jobs:
 #      - name: Test
 #        run: ./gradlew :app:test
 
+      - name: Linter
+        run: ./gradlew :app:lint
+
       - name: Sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
