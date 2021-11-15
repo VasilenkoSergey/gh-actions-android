@@ -9,25 +9,39 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v1
         with:
-          java-version: '11'
-          distribution: 'adopt'
-          architecture: x64
+          java-version: 11
 
-#      - name: Test
-#        run: ./gradlew :app:test
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
-#      - name: Linter
-#        run: ./gradlew :app:lint
+      - name: Cache Gradle packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
 
-      - name: Sonar
+      #      - name: Test
+      #        run: ./gradlew :app:test
+
+      #      - name: Linter
+      #        run: ./gradlew :app:lint
+
+      - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew :app:jacocoTestReport :app:sonarqube
+        run: ./gradlew :app:assembleDebug :app:jacocoTestReport :app:sonarqube --info
 
-      - name: Build
-        run: ./gradlew :app:assembleDebug
+#      - name: Build
+#        run: ./gradlew :app:assembleDebug
