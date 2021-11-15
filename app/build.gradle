@@ -1,13 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'jacoco'
     id 'org.sonarqube' version '3.3'
 }
-
-jacoco {
-    toolVersion = '0.8.5'
-}
+apply from: "$rootDir/jacoco.gradle"
 
 android {
     compileSdk 31
@@ -23,13 +19,12 @@ android {
     }
 
     buildTypes {
-        debug {
-            testCoverageEnabled true
-        }
         release {
             minifyEnabled false
-            testCoverageEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+//            testCoverageEnabled true
         }
     }
     compileOptions {
@@ -38,21 +33,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-            unitTests.returnDefaultValues = true
-        }
-    }
-}
-
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
     }
 }
 
